@@ -1,0 +1,34 @@
+mkdir hello-heroku
+cd hello-heroku
+virtualenv venv
+
+virtualenv venv
+python -m venv env
+env\Scripts\activate
+
+
+source venv/bin/activate      
+source 'venv/bin/activate'
+source "venv/bin/activate"
+#The above line is not working so skipped and went to the next line
+
+pip install Flask gunicorn
+
+hello.py:
+
+import os
+from flask import Flask
+
+app = Flask(__name__)
+
+@app.route('/')
+def hello():
+	return 'Hello Dreamforce!!'
+	
+Procfile:
+
+web: gunicorn hello:app 
+
+http://127.0.0.1:5000/?searchName="Adela Williams"
+
+http://127.0.0.1:5000/?searchName=Adela%20Williams

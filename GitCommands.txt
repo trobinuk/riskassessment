@@ -3,7 +3,7 @@ cd "to the folder"
 mkdir apiTesting
 cd apiTesting/
 git init
-echi .idea/* > .gitignore
+echo .idea/* > .gitignore
 
 
 cd "to the folder"
@@ -11,7 +11,8 @@ cd C:\Users\trobi\Desktop\Dr.Wu_Risk_Assesment_Project\February\Week3
 git config --global user.email "trobinuk@gmail.com"
 git config --global user.name "trobinuk"
 git add .
-git commit -m 'Initial commit'
+git commit -m "Initial commit"
 Heroku login
 heroku create apiriskassessment
+heroku buildpacks:set heroku/python
 git push heroku master
