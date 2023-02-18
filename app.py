@@ -15,7 +15,7 @@ def apiTesting():
     import requests
     from bs4 import BeautifulSoup #pip install bs4
     import spacy
-    nlp = spacy.load("en_core_web_lg")
+    nlp = spacy.load("en_core_web_sm")
     import pandas as pd 
     from openpyxl import load_workbook
     import re
