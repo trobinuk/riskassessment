@@ -1,5 +1,5 @@
 flask
-googlesearch
+google
 requests
 bs4
 pandas
