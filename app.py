@@ -191,33 +191,21 @@ def apiTesting():
             page = requests.get(url,headers=headers)
             soup = BeautifulSoup(page.text,'html.parser')
             parsed_text = soup.get_text()
+            text = parsed_text.split('\n')
+            text = list(filter(lambda x: x not in ('','\r'),text))    
             
-            raw_filename = f'{query}_{cnt}_raw.txt'
-
-            file1 = open(raw_filename,'w',encoding="utf-8")
-            file1.write(parsed_text)
-            file1.close()
-            
-            cleaned_file_name = f'{query}_{cnt}.txt'
-            try:
-                with open(raw_filename,'r',encoding="utf-8") as text_file, open(cleaned_file_name, 'w',encoding="utf-8") as myfile:  
-                    for line in text_file:
-                        if not line.isspace():
-                            if cnt == 11:
-                                if line.find('https://') > -1:
-                                    line = line.replace('https://',' https://')
-                            aligned_line = align_sentence(line.strip())
-                            splitted_lines_list = re.split('\. |\.\[', aligned_line)
-                            for i in splitted_lines_list:
-                                myfile.write(i+'\n')
-
-                data = ''
-                file = open(cleaned_file_name,'r',encoding="utf-8")
-                data = file.read()
-                data_into_list = data.split('\n')
-                file.close()
+            data_into_list = []
+            try:  
+                for line in text:
+                    if not line.isspace():
+                        if cnt == 11:
+                            if line.find('https://') > -1:
+                                line = line.replace('https://',' https://')
+                        aligned_line = align_sentence(line.strip())
+                        splitted_lines_list = re.split('\. |\.\[', aligned_line)
+                        for i in splitted_lines_list:
+                            data_into_list.append(i)
                 line_no = 0
-                
                 for line in data_into_list:
                     
                     email_matches = re.finditer('\S+@\S+', line)
@@ -377,6 +365,6 @@ def apiTesting():
             print('Error2: '+url)
 
 if __name__ == "__main__":
-    port = int(os.environ.get('PORT', 5000))
-    app.run(host='0.0.0.0', port=port)
-    #app.run(debug=False)#,port=2000
+    #port = int(os.environ.get('PORT', 5000))
+    #app.run(host='0.0.0.0', port=port)
+    app.run(debug=False)#,port=2000
