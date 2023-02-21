@@ -2,7 +2,7 @@ from flask import Flask,jsonify,request
 
 app = Flask(__name__)
 
-@app.route('/',methods=["GET"])
+@app.route('/')#,methods=["GET"])
 
 #app.route("/result",methods=["POST","GET"])
 
@@ -10,7 +10,8 @@ def apiTesting():
     #return {"API":"Response Positive and negative"} #http://127.0.0.1:2000
     #return "Hi Robinson!!"
     #def google_results():
-    query = request.args['searchName']
+    #query = request.args['searchName']
+    query = "Adela Williams"
     from googlesearch import search #pip install google
     import requests
     from bs4 import BeautifulSoup #pip install bs4
